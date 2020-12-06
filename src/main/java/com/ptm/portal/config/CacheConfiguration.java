@@ -47,6 +47,10 @@ public class CacheConfiguration {
             createCache(cm, com.ptm.portal.domain.User.class.getName());
             createCache(cm, com.ptm.portal.domain.Authority.class.getName());
             createCache(cm, com.ptm.portal.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.ptm.portal.domain.Job.class.getName());
+            createCache(cm, com.ptm.portal.domain.Job.class.getName() + ".clients");
+            createCache(cm, com.ptm.portal.domain.Client.class.getName());
+            createCache(cm, com.ptm.portal.domain.Client.class.getName() + ".names");
             // jhipster-needle-ehcache-add-entry
         };
     }

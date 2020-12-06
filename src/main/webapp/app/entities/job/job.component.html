@@ -1,0 +1,93 @@
+<div>
+    <h2 id="page-heading">
+        <span>Jobs</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-job" [routerLink]="['/job/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Job
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="jobs?.length === 0">
+        <span>No jobs found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="jobs && jobs.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Job Id</span></th>
+                    <th scope="col" ><span>Completed</span></th>
+                    <th scope="col" ><span>Reported By</span></th>
+                    <th scope="col" ><span>Reported On</span></th>
+                    <th scope="col" ><span>Client Order Id</span></th>
+                    <th scope="col" ><span>Priority</span></th>
+                    <th scope="col" ><span>Fault</span></th>
+                    <th scope="col" ><span>Access Instructions</span></th>
+                    <th scope="col" ><span>Address</span></th>
+                    <th scope="col" ><span>Occupiers Name</span></th>
+                    <th scope="col" ><span>Occupiers Home Phone</span></th>
+                    <th scope="col" ><span>Occupiers Work Phone</span></th>
+                    <th scope="col" ><span>Occupiers Mobile Phone</span></th>
+                    <th scope="col" ><span>Occupiers Tenant Signature</span></th>
+                    <th scope="col" ><span>Client</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let job of jobs ;trackBy: trackId">
+                    <td><a [routerLink]="['/job', job.id, 'view']">{{ job.id }}</a></td>
+                    <td>{{ job.jobId }}</td>
+                    <td>{{ job.completed | date:'medium' }}</td>
+                    <td>{{ job.reportedBy }}</td>
+                    <td>{{ job.reportedOn | date:'medium' }}</td>
+                    <td>{{ job.clientOrderId }}</td>
+                    <td>{{ job.priority }}</td>
+                    <td>{{ job.fault }}</td>
+                    <td>{{ job.accessInstructions }}</td>
+                    <td>{{ job.address }}</td>
+                    <td>{{ job.occupiersName }}</td>
+                    <td>{{ job.occupiersHomePhone }}</td>
+                    <td>{{ job.occupiersWorkPhone }}</td>
+                    <td>{{ job.occupiersMobilePhone }}</td>
+                    <td>{{ job.occupiersTenantSignature }}</td>
+                    <td>
+                        <span *ngFor="let client of job.clients; let last = last">
+                            <a class="form-control-static" [routerLink]="['/client', client?.id, 'view']">{{ client.name }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/job', job.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/job', job.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(job)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="job">
+            <h2><span>Job</span> {{ job.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Job Id</span></dt>
+                <dd>
+                    <span>{{ job.jobId }}</span>
+                </dd>
+                <dt><span>Completed</span></dt>
+                <dd>
+                    <span>{{ job.completed }}</span>
+                </dd>
+                <dt><span>Reported By</span></dt>
+                <dd>
+                    <span>{{ job.reportedBy }}</span>
+                </dd>
+                <dt><span>Reported On</span></dt>
+                <dd>
+                    <span>{{ job.reportedOn }}</span>
+                </dd>
+                <dt><span>Client Order Id</span></dt>
+                <dd>
+                    <span>{{ job.clientOrderId }}</span>
+                </dd>
+                <dt><span>Priority</span></dt>
+                <dd>
+                    <span>{{ job.priority }}</span>
+                </dd>
+                <dt><span>Fault</span></dt>
+                <dd>
+                    <span>{{ job.fault }}</span>
+                </dd>
+                <dt><span>Access Instructions</span></dt>
+                <dd>
+                    <span>{{ job.accessInstructions }}</span>
+                </dd>
+                <dt><span>Address</span></dt>
+                <dd>
+                    <span>{{ job.address }}</span>
+                </dd>
+                <dt><span>Occupiers Name</span></dt>
+                <dd>
+                    <span>{{ job.occupiersName }}</span>
+                </dd>
+                <dt><span>Occupiers Home Phone</span></dt>
+                <dd>
+                    <span>{{ job.occupiersHomePhone }}</span>
+                </dd>
+                <dt><span>Occupiers Work Phone</span></dt>
+                <dd>
+                    <span>{{ job.occupiersWorkPhone }}</span>
+                </dd>
+                <dt><span>Occupiers Mobile Phone</span></dt>
+                <dd>
+                    <span>{{ job.occupiersMobilePhone }}</span>
+                </dd>
+                <dt><span>Occupiers Tenant Signature</span></dt>
+                <dd>
+                    <span>{{ job.occupiersTenantSignature }}</span>
+                </dd>
+                <dt><span>Client</span></dt>
+                <dd>
+                    <span *ngFor="let client of job.clients; let last = last">
+                        <a [routerLink]="['/client', client?.id, 'view']">{{ client.name }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/job', job.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
