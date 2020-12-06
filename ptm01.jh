@@ -1,0 +1,24 @@
+entity Job {
+	jobId String,
+    completed ZonedDateTime,
+    reportedBy String,
+    reportedOn ZonedDateTime,
+    clientOrderId String,
+    priority Integer,
+    fault String,
+    accessInstructions String,
+    address String,
+    occupiersName String,
+    occupiersHomePhone String,
+    occupiersWorkPhone String,
+    occupiersMobilePhone String,
+    occupiersTenantSignature String    
+}
+
+entity Client {
+	name String
+}
+
+relationship ManyToMany {
+  Job{client(name)} to Client{name}
+}
